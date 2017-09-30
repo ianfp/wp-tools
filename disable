@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ ! -e $1 ]]; then
+    echo "No such site $1"
+    exit 1
+fi
+site=`basename $1`
+echo "Disabling $site..."
+pushd /etc/apache2/sites-enabled
+sudo rm -f $site 
+ls -l
+popd
+sudo apache2ctl restart
